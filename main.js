@@ -3,6 +3,7 @@ import { getRandomScores, getStudentJSON, runTitle } from "./lib.js";
 runTitle();
 
 warmup1();
+warmup2();
 
 function warmup1() {
   let c1 = false;
@@ -45,7 +46,40 @@ function warmup1() {
 
 function warmup2() {
   console.log("Exercise week 2");
-  const scores = getRandomScores(10);
+  let scores = getRandomScores(10);
+  let contentC2 = "";
+
+  document.getElementById("button-2a").addEventListener("click", () => {
+    contentC2 = "<ul>";
+    scores.forEach(function (score) {
+      contentC2 += `<li>${score}</li>`;
+    });
+    document.getElementById("content-2").innerHTML = contentC2;
+  }) + "</ul>";
+
+  document.getElementById("button-2b").addEventListener("click", () => {
+    scores = scores.sort(function (a, b) {
+      if (a > b) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    contentC2 = "<ul>";
+    scores.forEach(function (scores) {
+      contentC2 += `<li>${scores}</li>`;
+    });
+    document.getElementById("content-2").innerHTML = contentC2 + `</ul>`;
+  });
+
+  document.getElementById("button-2c").addEventListener("click", () => {
+    const sum = scores.reduce(function (total, current) {
+      return total + current;
+    });
+    document.getElementById(
+      "content-2"
+    ).innerHTML += `<h1>Som scores = ${sum}</h1>`;
+  });
 }
 
 function warmup3() {
