@@ -4,6 +4,7 @@ runTitle();
 
 warmup1();
 warmup2();
+warmup3();
 
 function warmup1() {
   let c1 = false;
@@ -84,6 +85,24 @@ function warmup2() {
 
 function warmup3() {
   let student = getStudentJSON();
+  const person = JSON.parse(student);
+  document.getElementById("button-3a").addEventListener("click", function () {
+    console.log(person);
+  });
+
+  document.getElementById("button-3b").addEventListener("click", function () {
+    let html = "";
+    html += `<h2>Naam: ${person.firstname} ${person.name}</h2>`;
+    html += `<h2>Leeftijd: ${person.age}`;
+
+    document.getElementById("content-3").innerHTML = html;
+
+    if (person.isGraduated) {
+      document.getElementById("content-3").classList = "graduated";
+    } else {
+      document.getElementById("content-3").classList = "not-graduated";
+    }
+  });
 }
 
 function warmup4() {
