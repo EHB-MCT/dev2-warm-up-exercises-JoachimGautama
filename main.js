@@ -5,6 +5,7 @@ runTitle();
 warmup1();
 warmup2();
 warmup3();
+warmup4();
 
 function warmup1() {
   let c1 = false;
@@ -47,12 +48,13 @@ function warmup1() {
 
 function warmup2() {
   console.log("Exercise week 2");
-  let scores = getRandomScores(10);
+  const scoresOriginal = getRandomScores(10);
+  let scores = [...scoresOriginal];
   let contentC2 = "";
 
   document.getElementById("button-2a").addEventListener("click", () => {
     contentC2 = "<ul>";
-    scores.forEach(function (score) {
+    scoresOriginal.forEach(function (score) {
       contentC2 += `<li>${score}</li>`;
     });
     document.getElementById("content-2").innerHTML = contentC2;
@@ -106,7 +108,34 @@ function warmup3() {
 }
 
 function warmup4() {
-  let main, min, max;
+  let main = "Fetch data first";
+  let min = "Fetch data first";
+  let max = "Fetch data first";
+  const URL =
+    "http://api.openweathermap.org/data/2.5/weather?q=Brussels&APPID=d7b955c4c268fe54649d6f0d702b39d1&units=metric";
+
+  document.getElementById("button-4a").addEventListener("click", function () {
+    goFetch(URL);
+  });
+
+  document.getElementById("button-4b").addEventListener("click", function () {
+    const html = `<h2>Temp: ${main}</h2><h2>Min temp: ${min}</h2><h2>Max temp: ${max}`;
+
+    document.getElementById("content-4").innerHTML = html;
+  });
+
+  function goFetch(URL) {
+    fetch(URL)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (weather) {
+        console.log(weather);
+        main = weather.main.temp;
+        min = weather.main.temp_min;
+        max = weather.main.temp_max;
+      });
+  }
 }
 
 function warmup5() {}
