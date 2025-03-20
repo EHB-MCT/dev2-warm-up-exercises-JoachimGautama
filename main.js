@@ -1,11 +1,14 @@
 import { getRandomScores, getStudentJSON, runTitle } from "./lib.js";
 
+import Student from "./student.js";
+
 runTitle();
 
 warmup1();
 warmup2();
 warmup3();
 warmup4();
+warmup5();
 
 function warmup1() {
   let c1 = false;
@@ -138,4 +141,17 @@ function warmup4() {
   }
 }
 
-function warmup5() {}
+function warmup5() {
+  let newStudent;
+  console.log("w5");
+  document.getElementById("button-5a").addEventListener("click", function () {
+    newStudent = new Student("Joachim", "23", "10");
+    console.log(newStudent);
+  });
+
+  document.getElementById("button-5b").addEventListener("click", function () {
+    document.getElementById(
+      "content-5"
+    ).innerHTML = `<h2>Name: ${newStudent._name}</h2><h2>Score: ${newStudent._score}</h2>`;
+  });
+}
